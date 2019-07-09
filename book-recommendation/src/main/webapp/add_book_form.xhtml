@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Book register</title>
+</h:head>
+
+<h:body>
+
+	<h3>Form</h3>
+
+	<h3>
+		<h:form>
+			<h:commandLink value="Book list" action="#{bookController.listForm}" />
+		</h:form>
+	</h3>
+
+	<h4>
+		<h:outputLabel id="oplMensagem" value="#{bookController.msg}" />
+	</h4>
+
+	<h:form>
+		<table>
+			<tr>
+				<td><h:outputText id="ltitle" value="Title:" /></td>
+				<td><h:inputText id="ttitle"
+						value="#{bookController.book.title}" /></td>
+			</tr>
+			<tr>
+				<td><h:outputText id="lauthor" value="Author:" /></td>
+				<td><h:inputText id="tauthor"
+						value="#{bookController.book.author}" /></td>
+			</tr>
+			<tr>
+				<td><h:outputText id="ltype" value="Type:" /></td>
+				<td><h:inputText id="ttype" value="#{bookController.book.type}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton id="submit" type="submit"
+						action="#{bookController.addBook}" value="Add" /></td>
+			</tr>
+		</table>
+
+	</h:form>
+
+</h:body>
+</html>
