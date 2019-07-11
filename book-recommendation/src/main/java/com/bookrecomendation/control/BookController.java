@@ -45,7 +45,7 @@ public class BookController {
 
 	public String addForm() {
 		book = new Book();
-		buttonAction = "Add";
+		setButtonAction("Add");
 
 		return "add_book_form";
 	}
@@ -53,7 +53,7 @@ public class BookController {
 	public String updateForm() {
 
 		book = getBookList().getRowData();
-		buttonAction = "Update";
+		setButtonAction("Update");
 
 		return "add_book_form";
 	}
@@ -74,10 +74,6 @@ public class BookController {
 
 	public Book getBook() {
 		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
 	}
 
 	public String getMsg() {
@@ -101,10 +97,6 @@ public class BookController {
 
 		bookList = new ListDataModel<Book>(allBooks);
 		return bookList;
-	}
-
-	public void setBookList(DataModel<Book> bookList) {
-		this.bookList = bookList;
 	}
 
 }
