@@ -40,8 +40,10 @@
 				<td><h:inputText id="tcategory" value="#{bookController.book.category}" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><h:commandButton id="submit" type="submit"
-						action="#{bookController.addBook}" value="Add" /></td>
+				<td colspan="2">
+					<h:commandButton id="add" type="submit" action="#{bookController.addBook}" rendered="#{bookController.buttonAction == 'Add'}" value="#{bookController.buttonAction}"/>
+					<h:commandButton id="update" type="submit" action="#{bookController.updateBook}" rendered="#{bookController.buttonAction == 'Update'}" value="#{bookController.buttonAction}"/>
+				</td>
 			</tr>
 		</table>
 

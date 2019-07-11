@@ -27,13 +27,27 @@ public class BookDAOImpl implements BookDAO {
 			fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
 	@Override
-	public void addBook(Book book) {
+	public void saveBook(Book book) {
 
 		MongoCollection<Book> collection = con.getCollection("book", Book.class).withCodecRegistry(pojoCodecRegistry);
 
 		collection.insertOne(book);
 
 		System.out.println("book added : " + book.getId());
+
+	}
+
+	@Override
+	public void updateBook(Book book) {
+
+		MongoCollection<Book> collection = con.getCollection("book", Book.class).withCodecRegistry(pojoCodecRegistry);
+
+		Bson filter = Filters.eq("_id", book.getId());
+		collection.findOneAndUpdate(filter, Bson.class.cast(book));
+		
+//		collection.findOneAndUpdate(Filters.and(Filters.lt(DBCollection.ID_FIELD_NAME, book.getId())))
+
+		System.out.println("book updated : " + book.getId());
 
 	}
 
@@ -62,10 +76,10 @@ public class BookDAOImpl implements BookDAO {
 		Bson filter = Filters.eq("_id", book.getId());
 		DeleteResult deleteResult = collection.deleteOne(filter);
 
-		if (deleteResult.getDeletedCount() > 0) {
+		long deletedCount = deleteResult.getDeletedCount();
+		if (deletedCount > 0) {
 			System.out.println("book deleted : " + book.getId());
 		}
-
 	}
 
 }

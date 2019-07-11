@@ -6,7 +6,9 @@ import com.bookrecomendation.model.Book;
 
 public interface BookDAO {
 
-	public void addBook(Book book);
+	public void saveBook(Book book);
+
+	public void updateBook(Book book);
 
 	public List<Book> getAllBooks();
 

@@ -19,6 +19,7 @@ public class BookController {
 	private Book book;
 	private DataModel<Book> bookList;
 	private String msg;
+	private String buttonAction = "Add";
 	private BookDAO bookDao = new BookDAOImpl();
 
 	@PostConstruct
@@ -27,20 +28,39 @@ public class BookController {
 	}
 
 	public String addBook() {
-		bookDao.addBook(book);
+		bookDao.saveBook(book);
 
 		setMsg("Inserted successfully!");
 		return "add_book_form";
 	}
 
+	public String updateBook() {
+
+		// TODO: fix bug, passing wrong element
+		bookDao.updateBook(book);
+
+		setMsg("Updated successfully!");
+		return "add_book_form";
+	}
+
 	public String addForm() {
 		book = new Book();
+		buttonAction = "Add";
+
+		return "add_book_form";
+	}
+
+	public String updateForm() {
+
+		book = getBookList().getRowData();
+		buttonAction = "Update";
 
 		return "add_book_form";
 	}
 
 	public String deleteBook() {
 
+		// TODO: fix bug, passing wrong element
 		Book b = getBookList().getRowData();
 		bookDao.deleteBook(b);
 
@@ -66,6 +86,14 @@ public class BookController {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public String getButtonAction() {
+		return buttonAction;
+	}
+
+	public void setButtonAction(String buttonAction) {
+		this.buttonAction = buttonAction;
 	}
 
 	public DataModel<Book> getBookList() {
