@@ -25,6 +25,8 @@ public class BookController {
 	@PostConstruct
 	public void init() {
 		book = new Book();
+
+		bookList = getBookList();
 	}
 
 	public String addBook() {
@@ -36,7 +38,6 @@ public class BookController {
 
 	public String updateBook() {
 
-		// TODO: fix bug, passing wrong element
 		bookDao.updateBook(book);
 
 		setMsg("Updated successfully!");
@@ -52,7 +53,8 @@ public class BookController {
 
 	public String updateForm() {
 
-		book = getBookList().getRowData();
+		book = bookList.getRowData();
+
 		setButtonAction("Update");
 
 		return "add_book_form";
@@ -60,9 +62,9 @@ public class BookController {
 
 	public String deleteBook() {
 
-		// TODO: fix bug, passing wrong element
-		Book b = getBookList().getRowData();
-		bookDao.deleteBook(b);
+		Book selectedBook = bookList.getRowData();
+
+		bookDao.deleteBook(selectedBook);
 
 		setMsg("Book deleted!");
 		return "book_list";
