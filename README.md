@@ -1,7 +1,7 @@
 # book-recommendation
 App built using JSF and MongoDB in embedded Tomcat server
 
-Before executing this app make sure you have the MongoDB server installed on port 27017.
+Before executing this app make sure you have the MongoDB server installed and configured on port 27017.
 
 Run MongoDB server: mongod.exe
 
