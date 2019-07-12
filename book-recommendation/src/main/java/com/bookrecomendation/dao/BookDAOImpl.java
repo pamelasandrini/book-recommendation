@@ -42,11 +42,15 @@ public class BookDAOImpl implements BookDAO {
 
 		MongoCollection<Book> collection = con.getCollection("book", Book.class).withCodecRegistry(pojoCodecRegistry);
 
-		Bson filter = Filters.eq("_id", book.getId());
-		//TODO: fix bug Cannot cast com.bookrecomendation.model.Book to org.bson.conversions.Bson
-		collection.findOneAndUpdate(filter, Bson.class.cast(book));
-		
-//		collection.findOneAndUpdate(Filters.and(Filters.lt(DBCollection.ID_FIELD_NAME, book.getId())))
+		Document query = new Document().append("_id", book.getId());
+
+		Document setData = new Document();
+		setData.append("title", book.getTitle()).append("author", book.getAuthor()).append("rating", book.getRating())
+				.append("category", book.getCategory());
+		Document update = new Document();
+		update.append("$set", setData);
+
+		collection.updateOne(query, update);
 
 		System.out.println("book updated : " + book.getId());
 
