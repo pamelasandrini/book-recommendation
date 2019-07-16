@@ -14,3 +14,6 @@ After the executable jar file creation go to target folder and run the following
 The main urls:
 http://localhost:8080/bookrecommendation/book_list.xhtml
 http://localhost:8080/bookrecommendation/add_book_form.xhtml
+
+http://localhost:8080/bookrecommendation/author_list.xhtml
+http://localhost:8080/bookrecommendation/add_author_form.xhtml
